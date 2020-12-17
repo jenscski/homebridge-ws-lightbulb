@@ -12,8 +12,6 @@ import {
 
 import { WebSocket } from '@oznu/ws-connect';
 
-import fs from 'fs';
-
 export class WsLightbulb implements AccessoryPlugin {
 
     private services: Service[] = [];
@@ -28,10 +26,6 @@ export class WsLightbulb implements AccessoryPlugin {
         public readonly config: AccessoryConfig,
         public readonly api: API,
     ) {
-      const packageJson = fs.readFileSync('./package.json');
-
-      const version = JSON.parse(packageJson.toString()).version || 0;
-
       const lightbulbService = new this.api.hap.Service.Lightbulb(config.name);
 
       lightbulbService.getCharacteristic(this.api.hap.Characteristic.On)
@@ -81,8 +75,7 @@ export class WsLightbulb implements AccessoryPlugin {
       const informationService = new this.api.hap.Service.AccessoryInformation()
         .setCharacteristic(this.api.hap.Characteristic.Manufacturer, 'Jens-Christian Skibakk')
         .setCharacteristic(this.api.hap.Characteristic.Model, 'WebSocket Lightbulb')
-        .setCharacteristic(this.api.hap.Characteristic.SerialNumber, config.serial as string || 'n/a')
-        .setCharacteristic(this.api.hap.Characteristic.FirmwareRevision, version);
+        .setCharacteristic(this.api.hap.Characteristic.SerialNumber, config.serial as string || 'n/a');
 
       this.services.push(informationService);
 
