@@ -1,6 +1,6 @@
 {
   "name": "@jenscski/homebridge-ws-lightbulb",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "WebSocket lightbulb for Homebridge.",
   "license": "Apache-2.0",
   "repository": {
