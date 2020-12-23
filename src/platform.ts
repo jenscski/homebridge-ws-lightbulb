@@ -55,7 +55,7 @@ export class WsLightbulb implements AccessoryPlugin {
             log.info('Current brightness of the switch was returned: ' + this.brightness);
             callback(undefined, this.brightness);
           } else {
-            callback(new Error('Offline'), this.switchOn);
+            callback(new Error('Offline'), this.brightness);
           }
         })
         .on(CharacteristicEventTypes.SET, (value: CharacteristicValue, callback: CharacteristicSetCallback) => {
